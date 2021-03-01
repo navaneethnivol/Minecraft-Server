@@ -1,6 +1,6 @@
 ![](https://www.freepnglogos.com/uploads/minecraft-logo-8.png)
 
-**Minecraft Self-hostable Server with automatic backup worker.**
+**Minecraft Self-hostable Server with automatic backups.**
 
 Run the application:
 ```sh
@@ -10,8 +10,7 @@ docker-compose up --build -d
 Sample Environment File
 
 ```env
-# Minecraft Worker Port
-PORT=8002
+# Minecraft Config
 
 # Minio Config
 MINIO_ACCESS_KEY=Minecraft
@@ -25,4 +24,4 @@ RCON_HOST=minecraft-server
 RCON_PORT=25575
 RCON_PASSWORD=minecraft123
 ```
-place this environment file in the repositories root directory.
+Place this environment file in the repositories root directory.
