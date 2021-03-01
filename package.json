@@ -1,0 +1,21 @@
+{
+  "name": "minecraft-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "cron": "^1.8.2",
+    "lodash.defaultsdeep": "^4.6.1",
+    "lodash.get": "^4.4.2",
+    "minio": "^7.0.18",
+    "simple-rcon": "^0.3.1",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js",
+    "config": "node config/config.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
