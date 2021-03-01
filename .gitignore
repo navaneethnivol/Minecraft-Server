@@ -5,6 +5,6 @@ config/app_config.json
 
 minecraft/logs
 minecraft/world
-# minecraft/server.jar
+minecraft/server.jar
 
 database/minecraft.db

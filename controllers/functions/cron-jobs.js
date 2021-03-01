@@ -20,7 +20,7 @@ module.exports = async (server) => {
 
     });
 
-    var autobackup = new CronJob('* * * * * *', function () {
+    var autobackup = new CronJob('* 4 * * * *', function () {
 
         try {
 
