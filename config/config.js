@@ -12,7 +12,7 @@ const config = {
 	},
 
 	backup: {
-		max_backups: 2,
+		max_backups: 7,
 		cron_job: '0 0 4 * * *'
 	},
 
