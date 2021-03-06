@@ -73,13 +73,20 @@ module.exports = (server) => {
 
                 var notes = '';
 
-                for (item in data) {
-                    notes += `${data[item].note_id}: ${data[item].data}` + '\n';
+                if (data.length == 0) {
+                    server.tellRaw("You don't have any notes yet. use help subcommand for more details on notes", event.player, { color: 'white' });
+                }
+                else {
+
+                    for (item in data) {
+                        notes += `${data[item].note_id}: ${data[item].data}` + '\n';
+                    }
+
+                    server.tellRaw(notes, event.player, { color: 'green' });
                 }
 
-                server.tellRaw(notes, event.player, { color: 'green' });
             });
         }
     });
-    
+
 };
