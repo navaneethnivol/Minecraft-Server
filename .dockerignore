@@ -1,4 +1,8 @@
 minecraft/world
 minecraft/logs
 
+.DS_Store
+node_modules
+config/app_config.json
+
 config/app_config.json

@@ -1,12 +1,23 @@
-var config = {
+const config = {
 
 	app: {
 		name: "Minecraft Server",
 		version: "v1.0.0"
 	},
 
+	notification: {
+		status: process.env.NOTIFICATION_ENABLE || true,
+		port: process.env.NOTIFICATION_PORT || 5000,
+		token: process.env.NOTIFICATION_TOKEN || 'minecraft'
+	},
+
 	backup: {
-		max_backups: 2
+		max_backups: 2,
+		cron_job: '0 0 4 * * *'
+	},
+
+	globals: {
+		players: []
 	},
 
 	rcon: {

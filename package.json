@@ -5,10 +5,12 @@
   "main": "server.js",
   "dependencies": {
     "cron": "^1.8.2",
+    "express": "^4.17.1",
     "lodash.defaultsdeep": "^4.6.1",
     "lodash.get": "^4.4.2",
     "minio": "^7.0.18",
     "simple-rcon": "^0.3.1",
+    "socket.io": "^3.1.2",
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {},

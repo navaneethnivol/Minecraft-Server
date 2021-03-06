@@ -52,7 +52,6 @@ module.exports = (server) => {
                             }
 
                             server.tellRaw("Note Deleted", event.player, { color: 'yellow' });
-
                         });
                     }
                 }
@@ -80,9 +79,7 @@ module.exports = (server) => {
 
                 server.tellRaw(notes, event.player, { color: 'green' });
             });
-
         }
-        
     });
     
 };

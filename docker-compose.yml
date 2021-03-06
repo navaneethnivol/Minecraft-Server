@@ -18,7 +18,8 @@ services:
     volumes:
       - minecraft-data:/app
       - ./minecraft/world:/app/minecraft/world
-      - ./minecraft/server.properties:/app/server.properties
+      - ./minecraft/server.properties:/app/minecraft/server.properties
+      - ./database/minecraft.db:/app/database/minecraft.db
     restart: unless-stopped
     depends_on:
       - minecraft-minio

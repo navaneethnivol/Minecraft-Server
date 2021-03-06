@@ -47,9 +47,7 @@ function zipBackup(backup_name, backup_type) {
                 return resolve(backup_name);
 
             });
-
         });
-
     });
 }
 

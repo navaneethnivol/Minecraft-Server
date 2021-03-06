@@ -8,7 +8,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-module.exports = async (server) => {
+module.exports = (server) => {
 
     var backup_ongoing = 0;
 
@@ -20,12 +20,12 @@ module.exports = async (server) => {
 
     });
 
-    var autobackup = new CronJob('* 4 * * * *', function () {
-
+    var autobackup = new CronJob(config.backup.cron_job, async function () {
         try {
 
             if (server.rcon.state != 'connected') {
                 console.log("RCON seems to be offline. [ backups alerts are not sent]");
+                return;
             }
 
             console.log("Strating Automatic Backup\n");
