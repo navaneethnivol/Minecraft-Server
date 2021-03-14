@@ -72,4 +72,4 @@ require('./controllers/commands/backup')(server);
 require('./controllers/commands/activity')(server, io);
 require('./controllers/commands/notes')(server);
 require('./controllers/commands/chats')(server);
-require('./controllers/functions/cron-jobs')(server);
+require('./controllers/functions/cron-jobs')(server, io);

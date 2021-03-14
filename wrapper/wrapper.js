@@ -1,12 +1,13 @@
 const path = require('path');
+const get = require('lodash.get');
 const EventsEmitter = require('events');
 const defaultsDeep = require('lodash.defaultsdeep');
-const get = require('lodash.get');
-const Rcon = require('../config/rcon');
 
 const { spawn } = require('child_process');
 
+const Rcon = require('../config/rcon');
 var configFile = require('../config/config');
+
 
 var defaultConfig = {
     flavor: 'vanilla',

@@ -8,7 +8,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-module.exports = (server) => {
+module.exports = async (server, io) => {
 
     var backup_ongoing = 0;
 
@@ -21,6 +21,7 @@ module.exports = (server) => {
     });
 
     var autobackup = new CronJob(config.backup.cron_job, async function () {
+
         try {
 
             if (server.rcon.state != 'connected') {
@@ -58,6 +59,8 @@ module.exports = (server) => {
             await sleep(5000);
 
             backup_ongoing = 1;
+
+            io.emit('backup', { done: false, status: 'ongoing' });
 
             return server.send('list').then(async (list) => {
 
@@ -114,8 +117,9 @@ module.exports = (server) => {
 
                         backup_ongoing = 0;
 
+                        io.emit('backup', { done: true, status: 'completed', backup_name: backup_name });
+
                         console.log(`Backup Created Successfully\n`);
-                        server.tellRaw(`Backup Created Successfully: ${backup_name}`, '@a', { color: 'yellow' });
 
                         if (extra_backups.length > 0) {
 
@@ -142,8 +146,8 @@ module.exports = (server) => {
         }
         catch (err) {
             backup_ongoing = 0;
+            io.emit('backup', { done: true, status: 'failed', error: err.message });
             console.log("Backup Failed: ", err);
-            server.tellRaw("Backup Failed", '@a', { color: 'red' });
         }
 
     }, null, true, 'Asia/Kolkata');
