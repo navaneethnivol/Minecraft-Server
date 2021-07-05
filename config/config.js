@@ -5,25 +5,9 @@ const config = {
 		version: "v1.0.0"
 	},
 
-	notification: {
-		status: process.env.NOTIFICATION_ENABLE || true,
-		port: process.env.NOTIFICATION_PORT || 5000,
-		token: process.env.NOTIFICATION_TOKEN || 'minecraft'
-	},
-
 	backup: {
 		max_backups: 7,
 		cron_job: '0 0 4 * * *'
-	},
-
-	globals: {
-		players: []
-	},
-
-	rcon: {
-		host: process.env.RCON_HOST || 'localhost',
-		port: process.env.RCON_PORT || 25575,
-		password: process.env.RCON_PASSWORD || 'minecraft123',
 	},
 
 	minio: {

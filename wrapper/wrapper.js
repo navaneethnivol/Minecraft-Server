@@ -5,25 +5,15 @@ const defaultsDeep = require('lodash.defaultsdeep');
 
 const { spawn } = require('child_process');
 
-const Rcon = require('../config/rcon');
 var configFile = require('../config/config');
 
 
 var defaultConfig = {
     flavor: 'vanilla',
-    command: {
-        prefix: '~'
-    },
     core: {
         jar: 'server.jar',
         game_dir: path.join(__dirname, '../') + 'minecraft/',
         args: ['-Xmx2G'],
-        rcon: {
-            host: 'localhost',
-            port: '25575',
-            password: 'minecraft123',
-            buffer: 100,
-        },
         pipeConfig: ['pipe', 'pipe', 'inherit']
     }
 }
@@ -33,7 +23,6 @@ class MinecraftServer extends EventsEmitter {
     constructor(config = {}) {
         super();
         this.config = defaultsDeep({}, config, defaultConfig);
-        this.rcon = new Rcon(configFile.rcon);
         this.config.event = defaultsDeep({}, this.config.event, {
             flavorSpecific: {
                 default: {
@@ -99,11 +88,6 @@ class MinecraftServer extends EventsEmitter {
 
         this.on('console', (string) => {
 
-            if (this.rcon.state !== 'connected') {
-                const rconRunning = /^\[[\d:]{8}\] \[Server thread\/INFO\]: RCON running/i;
-                if (string.match(rconRunning)) this.rcon.connect();
-            }
-
             const result = events.reduce((acc, event) => {
                 if (acc) return acc;
 
@@ -117,25 +101,6 @@ class MinecraftServer extends EventsEmitter {
             if (result) {
                 result.payload.timestamp = Date.now();
                 this.emit(result.event, result.payload);
-            }
-        });
-
-        this.on('chat', (event) => {
-
-            const commandRegx = new RegExp(`^${config.command.prefix}([\\w]+)\\s?(.*)`, 'i');
-
-            const stripped = event.message.match(commandRegx);
-            if (stripped) {
-                const command = stripped[1].toLowerCase();
-                this.emit(command, {
-                    player: event.player,
-                    command,
-                    args: stripped[2].split(' '),
-                    timestamp: Date.now(),
-                });
-            }
-            else {
-                this.emit('message', event);
             }
         });
 
@@ -176,25 +141,6 @@ class MinecraftServer extends EventsEmitter {
         }
 
         return this;
-    }
-
-    send(command) {
-        return new Promise((resolve) => {
-            this.rcon.exec(command, result => resolve(result));
-        });
-    }
-
-    execConsoleCommand(command) {
-        return new Promise((resolve) => {
-            this.spawn.stdin.write(`${command}\n`, () => resolve());
-        });
-    }
-
-    tellRaw(message, target = '@a', options = {}) {
-        if (typeof target !== 'string') return Promise.reject(new Error('util.tellRaw: Specified target should be a string'));
-        if (typeof options !== 'object') return Promise.reject(new Error('util.tellRaw: Options for tellraw should be an object'));
-        options.text = typeof message === 'string' ? message : JSON.stringify(message);
-        return this.send(`tellraw ${target} ${JSON.stringify(options)}`);
     }
 
 }

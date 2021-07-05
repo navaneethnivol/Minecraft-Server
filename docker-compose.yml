@@ -2,27 +2,26 @@ version: "3"
 services:
   # -------------------- Minecraft Server Container -------------------- #
 
-  minecraft-server:
-    image: "minecraft-server"
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: minecraft-server
-    ports:
-      - "25565:25565"
-      - "25575:25575"
-      - "5000:5000"
-    env_file:
-      - ./.env
-    networks:
-      - minecraft_net
-    volumes:
-      - minecraft-data:/app
-      - ./minecraft/world:/app/minecraft/world
-      - ./minecraft/server.properties:/app/minecraft/server.properties
-    restart: unless-stopped
-    depends_on:
-      - minecraft-minio
+  # minecraft-server:
+  #   image: "minecraft-server"
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: minecraft-server
+  #   ports:
+  #     - "25565:25565"
+  #     - "25575:25575"
+  #   env_file:
+  #     - ./.env
+  #   networks:
+  #     - minecraft_net
+  #   volumes:
+  #     - minecraft-data:/app
+  #     - ./minecraft/world:/app/minecraft/world
+  #     - ./minecraft/server.properties:/app/minecraft/server.properties
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - minecraft-minio
 
 
   # -------------------- Minecraft Object Storage -------------------- #

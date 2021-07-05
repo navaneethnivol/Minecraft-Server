@@ -43,16 +43,8 @@ makeBucket('world-backups', (err, bucket_name) => {
         console.error(err);
         process.exit(1);
     }
-
-    makeBucket('database-backups', (err, bucket_name) => {
-
-        if (err) {
-            console.error(err);
-            process.exit(1);
-        }
-
-    });
-
+    
+    console.log("Bucket Created");
 });
 
 
