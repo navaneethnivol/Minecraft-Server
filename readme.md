@@ -18,10 +18,5 @@ MINIO_SECRET_KEY=Minecraft123
 MINIO_PORT=9000
 MINIO_ENDPOINT='minecraft-minio'
 
-
-# RCON Config
-RCON_HOST=minecraft-server
-RCON_PORT=25575
-RCON_PASSWORD=minecraft123
 ```
 Place this environment file in the repositories root directory.
