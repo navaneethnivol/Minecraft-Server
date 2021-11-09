@@ -1,8 +1,10 @@
-FROM timbru31/java-node:8-jre-14
+FROM openjdk:16-slim
 
 RUN apt-get update && apt-get upgrade -y
 
-RUN apt-get -y install vim zip
+RUN apt-get -y install wget vim zip unzip nodejs npm
+
+RUN node --version
 
 WORKDIR /app
 
