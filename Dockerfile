@@ -1,4 +1,4 @@
-FROM openjdk:16-slim
+FROM openjdk:17.0.1-slim
 
 RUN apt-get update && apt-get upgrade -y
 
@@ -11,8 +11,6 @@ WORKDIR /app
 COPY . .
 
 RUN npm install
-
-RUN echo "eula=true" > ./minecraft/eula.txt
 
 CMD node server.js
 
