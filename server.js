@@ -13,4 +13,4 @@ console.log("\nStarting Minecraft Server 🧱\n");
 server.start();
 
 // Controllers
-require('./controllers/functions/cron-jobs')(server);
+// require('./controllers/functions/cron-jobs')(server);

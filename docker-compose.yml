@@ -16,9 +16,7 @@ services:
     networks:
       - minecraft_net
     volumes:
-      - minecraft-data:/app
-      - ./minecraft/world:/app/minecraft/world
-      - ./minecraft/server.properties:/app/minecraft/server.properties
+      - ./minecraft:/app/minecraft
     restart: unless-stopped
     depends_on:
       - minecraft-minio
@@ -47,5 +45,4 @@ networks:
     driver: bridge
 
 volumes:
-  minecraft-data:
   minecraft-backups:
