@@ -5,9 +5,6 @@ const defaultsDeep = require('lodash.defaultsdeep');
 
 const { spawn } = require('child_process');
 
-var configFile = require('../config/config');
-
-
 var defaultConfig = {
     flavor: 'vanilla',
     core: {
